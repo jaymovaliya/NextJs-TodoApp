@@ -6,9 +6,22 @@ import data from '../data.json'
 class TODOList extends Component {
 
     state = {
-        todos: data,
+        todos: null,
         hiddenInput: true,
-        todoValue: ''
+        todoValue: '',
+        inputValue: null
+    }
+
+    setDefault = () => {
+        data.forEach(item => {
+            item['completed'] = false
+            item['editing'] = false
+        })
+        this.setState({ todos: data })
+    }
+
+    componentDidMount() {
+        this.setDefault()
     }
 
     inputStyle = () => {
@@ -36,11 +49,27 @@ class TODOList extends Component {
         this.setState({
             todos: this.state.todos.map(todo => {
                 if (todo.id === id) {
-                    todo.completed = !todo.completed
+                    todo.editing = !todo.editing
                 }
                 return todo
             })
         })
+        let todo = this.state.todos.filter(todo => todo.id == id)[0]
+        if (todo.editing) {
+            //let todos = [...this.state.todos]
+            let todoEdit = todo.title
+            this.setState({ inputValue: todoEdit })
+        }
+        else {
+            this.setState({
+                todos: this.state.todos.map(todo => {
+                    if (todo.id === id) {
+                        todo.title = this.state.inputValue
+                    }
+                    return todo
+                })
+            })
+        }
     }
 
     getCompleted = (id) => {
@@ -67,14 +96,33 @@ class TODOList extends Component {
         this.setState({ todoValue: str })
     }
 
+    handleEditChange = (e) => {
+        let str = e.target.value;
+        this.setState({ inputValue: str })
+    }
+
     render() {
-        return (
-            <div className="App">
-                <input type="text" onChange={this.handleChange} style={this.inputStyle()} value={this.state.todoValue}></input>
-                <button onClick={this.addInput}>Create New TODO</button>
-                <Todos todos={this.state.todos} getCompleted={this.getCompleted} getEdited={this.getEdited} getDeleted={this.getDeleted} />
-            </div>
-        );
+        if (this.state.todos) {
+            return (
+                <div className="App">
+                    <input type="text" onChange={this.handleChange} style={this.inputStyle()} value={this.state.todoValue}></input>
+                    <button onClick={this.addInput}>Create New TODO</button>
+                    <Todos todos={this.state.todos}
+                    inputValue={this.state.inputValue}
+                    getCompleted={this.getCompleted}
+                    getEdited={this.getEdited}
+                    getDeleted={this.getDeleted}
+                    handleEditChange={this.handleEditChange} />
+                </div>
+            );
+        }
+        else {
+            return (
+                <div>
+                    <h1>ToDo App</h1>
+                </div>
+            )
+        }
     }
 }
 
