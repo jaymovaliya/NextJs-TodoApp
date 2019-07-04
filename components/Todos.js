@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+
+// TodoItem --> component that handles single todo Item
 import TodoItem from './TodoItem'
 class Todos extends Component {
     render() {

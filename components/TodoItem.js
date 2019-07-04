@@ -3,6 +3,8 @@ import "./TodoItem.scss";
 
 export default class TodoItem extends Component {
     
+
+    // dynamic css to set dot to complete when click on completed todo
     getStyle = () => {
         let style = "dot complete";
         return (
@@ -10,12 +12,15 @@ export default class TodoItem extends Component {
         )
     }
 
+    // dynamic css to handle input tab when click on edit todo
     getInputStyle = () => {
         
         return {
             display: this.props.todo.editing ? '' : 'none'
         }
     }
+
+    // dynamic css to handle title when click on edit todo
     getTitleStyle = () => {
         return {
             display: this.props.todo.editing ? 'none' : ''
@@ -45,16 +50,16 @@ export default class TodoItem extends Component {
                     </div>
                     <div className="spacer" />
                     <div onClick={this.props.getEdited.bind(this, id)} className="spanWrapper toolButtons first">
-                        <button>E</button>
+                        <button>Edit</button>
                     </div>
                     <div
                         onClick={this.props.getCompleted.bind(this, id)}
                         className="spanWrapper toolButtons middle"
                     >
-                        <button>C</button>
+                        <button>Done</button>
                     </div>
                     <div onClick={this.props.getDeleted.bind(this, id)} className="spanWrapper toolButtons last">
-                        <button>D</button>
+                        <button>Delete</button>
                     </div>
                 </div>
             </div>
