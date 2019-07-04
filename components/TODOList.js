@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Todos from './Todos'
 import data from '../data.json'
+import "./TodoItem.scss";
+
 //import './TodoList.css'
 
 class TODOList extends Component {
@@ -9,7 +11,8 @@ class TODOList extends Component {
         todos: null,
         hiddenInput: true,
         todoValue: '',
-        inputValue: null
+        inputValue: "",
+        key: 0,
     }
 
     setDefault = () => {
@@ -21,6 +24,7 @@ class TODOList extends Component {
     }
 
     componentDidMount() {
+        // console.log(data);
         this.setDefault()
     }
 
@@ -105,9 +109,19 @@ class TODOList extends Component {
         if (this.state.todos) {
             return (
                 <div className="App">
-                    <input type="text" onChange={this.handleChange} style={this.inputStyle()} value={this.state.todoValue}></input>
-                    <button onClick={this.addInput}>Create New TODO</button>
-                    <Todos todos={this.state.todos}
+                    <div className="addTaskWrapper">
+                        <input 
+                            className="taskInputField" 
+                            type="text" 
+                            onChange={this.handleChange}
+                            style={this.inputStyle()} 
+                            value={this.state.todoValue}
+                            placeholder="Enter the todo task name"
+                        ></input>
+                        <button className="taskButton" onClick={this.addInput}> + CREATE NEW TODO</button>
+                    </div>
+                    <Todos 
+                    todos={this.state.todos}
                     inputValue={this.state.inputValue}
                     getCompleted={this.getCompleted}
                     getEdited={this.getEdited}
@@ -119,7 +133,7 @@ class TODOList extends Component {
         else {
             return (
                 <div>
-                    <h1>ToDo App</h1>
+                    <h1>TODO APP</h1>
                 </div>
             )
         }

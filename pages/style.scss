@@ -1,0 +1,218 @@
+$displayType: flex;
+
+// Outside Wrapper -- Top most div in TODOItem
+$itemBorderColor: lightsteelblue;
+$itemWidth: 55%;
+$spaceBetweenItems: 1%;
+$boxShadow: 0 10px 6px -6px #777;
+$fontSize: 1.2rem;
+
+// Dot showing the task status
+$dotSize: 15px;
+$dotBorderColor: grey;
+$horizontalDotPadding: 2%;
+
+// Completed Task
+$taskCompleteColor: darkblue; 
+
+// Uncomplete Task
+$taskInCompleteColor: white;
+
+// ALL Span
+$textPadding: 2.5%;
+
+// TOOL BUTTONS
+$toolButtonBorderColor: black;
+$toolButtonHoveredBackground: grey; 
+$toolHoveredText: white;
+$borderSize: 1px solid;
+
+// CURSOR
+$cursorType: pointer;
+
+// ADD TASK 
+$marginTop: 5%;
+$marginBottom: 3%;
+
+// Edit Input
+$inputWidth: 200px;
+
+// SMALL MEDIA DEVICE
+$s_itemWidth: 92%;
+$s_margin: 6%;
+
+//tool padding
+$smallToolPad: 2%; 
+
+// Add TODO Task
+$taskButtonBackColor: rgb(66, 98, 168);
+$taskButtonColor: white;
+$taskBorderColor: black;
+$rightCornerBorder: 2.5px;
+$taskHovered: #6c757d;
+$taskButtonFontSize:20px;
+
+
+
+body{
+  font-family: Arial, Helvetica, sans-serif, 'Segoe UI', ;
+}
+
+
+.outsideWrapper {
+  height: 100%;
+  border: .2px solid $itemBorderColor;
+  margin: 0 auto;
+  width: $itemWidth;
+  -webkit-box-shadow: $boxShadow;
+  -moz-box-shadow: $boxShadow;
+  box-shadow: $boxShadow;
+  margin-bottom: $spaceBetweenItems;
+  font-size: $fontSize;
+}
+
+.dot{
+  display: inline-block;
+  height: $dotSize;
+  width: $dotSize;
+  border-radius: 50%;
+  border: 2px solid $dotBorderColor;
+}
+
+.complete{
+  background: $taskCompleteColor;
+}
+
+.notComplete{
+  background: $taskInCompleteColor;
+}
+
+
+.spanWrapper {
+  padding-bottom: $textPadding;
+  padding-top: $textPadding + 1%;
+}
+
+.innerWrapper {
+  display: $displayType;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.dotWrapper {
+  padding-left: $horizontalDotPadding;
+  padding-right: $horizontalDotPadding;
+}
+
+.titleWrapper {
+  width: 100%;
+}
+
+.inputWrapper{
+  width: $inputWidth;
+  padding-top: $horizontalDotPadding;
+  padding-bottom: $horizontalDotPadding;
+}
+
+.toolButtons {
+  padding: $textPadding;
+  background-color: rgb(238, 235, 236);
+}
+
+.last,.first{
+  border: $borderSize $toolButtonBorderColor;
+}
+
+.middle{
+  border-top: $borderSize $toolButtonBorderColor;
+  border-bottom: $borderSize $toolButtonBorderColor;
+}
+
+.toolButtons:hover {
+  background-color: $toolButtonHoveredBackground;
+  cursor: $cursorType;
+  color: $toolHoveredText;
+}
+
+.addTaskWrapper{
+  display: $displayType;
+  justify-content: center;
+  margin: 0 auto;
+  width: $itemWidth;
+  margin-top: $marginTop;
+  margin-bottom: $marginBottom;
+}
+
+@media (max-width: 768px) {
+  .outsideWrapper {
+    width: $s_itemWidth;
+    margin-bottom: 2%;
+    margin-top: 5%;
+    font-size: 1rem;
+  }
+
+  .inputWrapper{
+    width: $inputWidth - 100px;
+  }
+
+  .toolButtons {
+    padding-top: $smallToolPad;
+    padding-left: $smallToolPad;
+    padding-right: $smallToolPad;
+  }
+
+  .addTaskWrapper{
+    width: 90%;
+    display: $displayType;
+    justify-content: center;
+    margin: 0 auto;
+    margin-bottom: $s_margin;
+    margin-top: $s_margin + 4%;
+  }
+
+  .spanWrapper{
+    padding-top: $smallToolPad + 3%;
+  }
+  .toolButtons {
+    padding: $smallToolPad + 1%;
+  }
+
+}
+
+.inputField{
+  width: 100%;
+}
+
+.taskInputField{
+  width: 100%;
+  padding-left: $smallToolPad;
+}
+
+.taskButton{
+  background-color: $taskButtonBackColor;
+  border: $borderSize $taskBorderColor;
+  border-bottom-right-radius: $rightCornerBorder; 
+  border-top-right-radius: $rightCornerBorder; 
+  font-size: $taskButtonFontSize;
+  color:$taskButtonColor;
+}
+
+.taskButton:hover{
+  background-color: $taskHovered;
+  cursor: pointer;
+}
+
+.spanWrapper > button{
+  border: none;
+  background: none;
+  cursor: $cursorType; 
+  font-size: $fontSize; 
+}
+.spanWrapper > button:hover{
+  color: $taskButtonBackColor; 
+}
+.spanWrapper > button:focus{
+  outline: none;
+}
