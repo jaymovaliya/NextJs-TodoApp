@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import "./TodoItem.scss";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ReactTooltip from 'react-tooltip'
 
 export default class TodoItem extends Component {
     
 
-    // dynamic css to set dot to complete when click on completed todo
+    // dynamic css to set dot to complete when clicked on completed todo
     getStyle = () => {
         let style = "dot complete";
         return (
@@ -12,15 +14,14 @@ export default class TodoItem extends Component {
         )
     }
 
-    // dynamic css to handle input tab when click on edit todo
+    // dynamic css to handle input tab when clicked on edit todo
     getInputStyle = () => {
-        
         return {
             display: this.props.todo.editing ? '' : 'none'
         }
     }
 
-    // dynamic css to handle title when click on edit todo
+    // dynamic css to handle title when clicked on edit todo
     getTitleStyle = () => {
         return {
             display: this.props.todo.editing ? 'none' : ''
@@ -50,16 +51,32 @@ export default class TodoItem extends Component {
                     </div>
                     <div className="spacer" />
                     <div onClick={this.props.getEdited.bind(this, id)} className="spanWrapper toolButtons first">
-                        <button>Edit</button>
+                        {/* <button>Edit</button> */}
+                        <button>
+                            <label data-tip="Edit">
+                                <FontAwesomeIcon icon="edit" className="backHover"/>
+                                <ReactTooltip/>
+                            </label>
+                        </button>
                     </div>
                     <div
                         onClick={this.props.getCompleted.bind(this, id)}
                         className="spanWrapper toolButtons middle"
                     >
-                        <button>Done</button>
+                        {/* <button>Done</button> */}
+                        <button>
+                            <label data-tip="Complete">
+                                <FontAwesomeIcon icon="check" className="backHover"/>
+                            </label>
+                        </button>
                     </div>
                     <div onClick={this.props.getDeleted.bind(this, id)} className="spanWrapper toolButtons last">
-                        <button>Delete</button>
+                        {/* <button>Delete</button> */}
+                        <button>
+                            <label data-tip="Delete">
+                                <FontAwesomeIcon icon="trash" className="backHover"/>
+                            </label>
+                        </button>
                     </div>
                 </div>
             </div>

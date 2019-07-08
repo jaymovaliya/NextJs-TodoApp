@@ -216,3 +216,10 @@ body{
 .spanWrapper > button:focus{
   outline: none;
 }
+
+
+.toolButtons{
+  .backHover:hover{
+    color: red;
+  }
+}
